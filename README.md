@@ -23,10 +23,10 @@ to your CMakeList.txt file.
 
 Add these to your CMakeList.txt file(I replaced main with TicTacToe because project is named TicTacToe):
 ```cmd
-> find_package(wxWidgets REQUIRED)
-> target_compile_definitions(TicTacToe PRIVATE ${wxWidgets_DEFINITIONS} "$<$<CONFIG:DEBUG>:${wxWidgets_DEFINITIONS_DEBUG}>")
-> target_include_directories(TicTacToe PRIVATE ${wxWidgets_INCLUDE_DIRS})
-> target_link_libraries(TicTacToe PRIVATE ${wxWidgets_LIBRARIES})
+find_package(wxWidgets REQUIRED)
+target_compile_definitions(TicTacToe PRIVATE ${wxWidgets_DEFINITIONS} "$<$<CONFIG:DEBUG>:${wxWidgets_DEFINITIONS_DEBUG}>")
+target_include_directories(TicTacToe PRIVATE ${wxWidgets_INCLUDE_DIRS})
+target_link_libraries(TicTacToe PRIVATE ${wxWidgets_LIBRARIES})
 ```
 
 One last step, in line 149, delete or comment out *SetIcon(wxICON(sample));* as samples.xml isn't included in package.
