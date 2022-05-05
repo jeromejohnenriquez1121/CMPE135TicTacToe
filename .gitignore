@@ -85,6 +85,7 @@ local.properties
 # Works on IntelliJ, PyCharm, CLion, PHPStorm, Android Studio, Webstorm, AppCode, RubyMine
 
 # User-specific stuff:
+.idea/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
@@ -158,3 +159,16 @@ fabric.properties
 *.exe
 *.out
 *.app
+
+#CMake and Make
+CMakeLists.txt
+**/cmake-build-debug
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/install_manifest.txt
+**/CMakeFiles/
+**/CTestTestfile.cmake
+**/Makefile
+**/*.cbp
+**/CMakeScripts
+**/compile_commands.json
