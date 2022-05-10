@@ -1,17 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////
-// Name:        minimal.cpp
-// Purpose:     Minimal wxWidgets sample
-// Author:      Julian Smart
-// Modified by:
-// Created:     04/01/98
-// RCS-ID:      $Id$
-// Copyright:   (c) Julian Smart
-// Licence:     wxWindows licence
-/////////////////////////////////////////////////////////////////////////////
-
-// ============================================================================
-// declarations
-// ============================================================================
 
 // ----------------------------------------------------------------------------
 // headers
@@ -30,30 +16,16 @@
 #include "wx/wx.h"
 #endif
 
-// ----------------------------------------------------------------------------
-// resources
-// ----------------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------------------
-// private classes
-// ----------------------------------------------------------------------------
 
 // Define a new application type, each program should derive a class from wxApp
 class MyApp : public wxApp
 {
 public:
-    // override base class virtuals
-    // ----------------------------
 
-    // this one is called on application startup and is a good place for the app
-    // initialization (doing it here and not in the ctor allows to have an error
-    // return: if OnInit() returns false, the application terminates)
     virtual bool OnInit();
 };
 
-// Define a new frame type: this is going to be our main frame
+
 class MyFrame : public wxFrame
 {
 public:
@@ -63,9 +35,12 @@ public:
     // event handlers (these functions should _not_ be virtual)
     void OnQuit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
+    void StartGame(wxCommandEvent &event);
 
 private:
-    // any class wishing to process wxWidgets events must use this macro
+    wxPanel *start_panel;
+    wxPanel *game_panel;
+
 wxDECLARE_EVENT_TABLE();
 };
 
@@ -73,63 +48,43 @@ wxDECLARE_EVENT_TABLE();
 // constants
 // ----------------------------------------------------------------------------
 
-// IDs for the controls and the menu commands
+
 enum
 {
     // menu items
     Minimal_Quit = wxID_EXIT,
-
-    // it is important for the id corresponding to the "About" command to have
-    // this standard value as otherwise it won't be handled properly under Mac
-    // (where it is special and put into the "Apple" menu)
-    Minimal_About = wxID_ABOUT
+    Minimal_About = wxID_ABOUT,
+    Start_Button = wxID_ANY,
 };
 
 // ----------------------------------------------------------------------------
 // event tables and other macros for wxWidgets
 // ----------------------------------------------------------------------------
 
-// the event tables connect the wxWidgets events with the functions (event
-// handlers) which process them. It can be also done at run-time, but for the
-// simple menu events like this the static method is much simpler.
+
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
                 EVT_MENU(Minimal_Quit,  MyFrame::OnQuit)
                 EVT_MENU(Minimal_About, MyFrame::OnAbout)
+                EVT_BUTTON(Start_Button, MyFrame::StartGame)
 wxEND_EVENT_TABLE()
 
-// Create a new application object: this macro will allow wxWidgets to create
-// the application object during program execution (it's better than using a
-// static object for many reasons) and also implements the accessor function
-// wxGetApp() which will return the reference of the right type (i.e. MyApp and
-// not wxApp)
+// Similar to main function
 IMPLEMENT_APP(MyApp)
-
-// ============================================================================
-// implementation
-// ============================================================================
 
 // ----------------------------------------------------------------------------
 // the application class
 // ----------------------------------------------------------------------------
 
-// 'Main program' equivalent: the program execution "starts" here
 bool MyApp::OnInit()
 {
-    // call the base class initialization method, currently it only parses a
-    // few common command-line options but it could be do more in the future
+
     if ( !wxApp::OnInit() )
         return false;
 
-    // create the main application window
     MyFrame *frame = new MyFrame("TicTacToe");
 
-    // and show it (the frames, unlike simple controls, are not shown when
-    // created initially)
     frame->Show(true);
 
-    // success: wxApp::OnRun() will be called which will enter the main message
-    // loop and the application will run. If we returned false here, the
-    // application would exit immediately.
     return true;
 }
 
@@ -137,35 +92,63 @@ bool MyApp::OnInit()
 // main frame
 // ----------------------------------------------------------------------------
 
-// frame constructor
 MyFrame::MyFrame(const wxString& title)
         : wxFrame(NULL, wxID_ANY, title)
 {
 
-#if wxUSE_MENUS
-    // create a menu bar
-    wxMenu *fileMenu = new wxMenu;
 
-    // the "About" item should be in the help menu
+#if wxUSE_MENUS
+    wxMenu *fileMenu = new wxMenu;
     wxMenu *helpMenu = new wxMenu;
     helpMenu->Append(Minimal_About, "&About\tF1", "Show about dialog");
-
     fileMenu->Append(Minimal_Quit, "E&xit\tAlt-X", "Quit this program");
 
-    // now append the freshly created menu to the menu bar...
     wxMenuBar *menuBar = new wxMenuBar();
     menuBar->Append(fileMenu, "&File");
     menuBar->Append(helpMenu, "&Help");
 
-    // ... and attach this menu bar to the frame
     SetMenuBar(menuBar);
-#endif // wxUSE_MENUS
+#endif
 
-#if wxUSE_STATUSBAR
-    // create a status bar just for fun (by default with 1 pane only)
-    CreateStatusBar(2);
-    SetStatusText("Welcome to wxWidgets!");
-#endif // wxUSE_STATUSBAR
+    bool game_started = false;
+
+    // Title panel
+    wxStaticText *title_text = new wxStaticText(this, wxID_ANY, "Welcome to Tic Tac Toe",wxDefaultPosition, wxSize(600, 50), wxALIGN_CENTRE_HORIZONTAL);
+    title_text->SetBackgroundColour(wxColor(100, 100, 200));
+
+    game_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600, 300));
+    game_panel->Show(false);
+
+    start_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600, 300));
+    wxButton *start_button = new wxButton(start_panel, wxID_ANY, "Start Game", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
+
+    wxBoxSizer *v_sizer = new wxBoxSizer(wxVERTICAL);
+    v_sizer->Add(title_text, 0, wxEXPAND);
+    v_sizer->Add(game_panel, 1, wxALIGN_CENTER);
+    v_sizer->Add(start_panel, 1, wxALIGN_CENTER);
+
+    // First row
+    wxButton *button1  = new wxButton(game_panel, wxID_ANY,"1" ,wxPoint(0, 0), wxSize(100, 100), wxALIGN_CENTER);
+    wxButton *button2  = new wxButton(game_panel, wxID_ANY,"2" ,wxPoint(110, 0), wxSize(100, 100), wxALIGN_CENTER);
+    wxButton *button3  = new wxButton(game_panel, wxID_ANY,"3" ,wxPoint(220, 0), wxSize(100, 100), wxALIGN_CENTER);
+
+    // Second row
+    wxButton *button4  = new wxButton(game_panel, wxID_ANY,"4" ,wxPoint(0, 100), wxSize(100, 100), wxALIGN_CENTER);
+    wxButton *button5  = new wxButton(game_panel, wxID_ANY,"5" ,wxPoint(110, 100), wxSize(100, 100), wxALIGN_CENTER);
+    wxButton *button6  = new wxButton(game_panel, wxID_ANY,"6" ,wxPoint(220, 100), wxSize(100, 100), wxALIGN_CENTER);
+
+    // Third row
+    wxButton *button7  = new wxButton(game_panel, wxID_ANY,"7" ,wxPoint(0, 200), wxSize(100, 100), wxALIGN_CENTER);
+    wxButton *button8  = new wxButton(game_panel, wxID_ANY,"8" ,wxPoint(110, 200), wxSize(100, 100), wxALIGN_CENTER);
+    wxButton *button9  = new wxButton(game_panel, wxID_ANY,"9" ,wxPoint(220, 200), wxSize(100, 100), wxALIGN_CENTER);
+
+
+    wxBoxSizer *h_sizer1 = new wxBoxSizer(wxHORIZONTAL);
+
+    v_sizer->Add(h_sizer1, 0, wxALIGN_CENTRE_HORIZONTAL);
+
+    this->SetSizerAndFit(v_sizer);
+
 }
 
 
@@ -191,4 +174,9 @@ void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
                  "About wxWidgets minimal sample",
                  wxOK | wxICON_INFORMATION,
                  this);
+}
+
+void MyFrame::StartGame(wxCommandEvent& event){
+    start_panel->Show(false);
+    game_panel->Show(true);
 }
