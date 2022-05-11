@@ -26,7 +26,7 @@ public:
     Board(const wxString& title);
 
     // Event handlers
-
+    void StartGame(wxCommandEvent& event);
 
     //void ClearBoard(wxCommandEvent &event);
     void markSquare(MarkType mark, int index);
@@ -38,6 +38,7 @@ private:
 
     wxButton *boardSquares[9];
     bool filledSquares[9];
+    wxDECLARE_EVENT_TABLE();
 };
 
 
