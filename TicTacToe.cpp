@@ -63,10 +63,9 @@ enum
 // ----------------------------------------------------------------------------
 
 
-//wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-//                EVT_MENU(Minimal_Quit,  MyFrame::OnQuit)
-//                EVT_MENU(Minimal_About, MyFrame::OnAbout)
-//wxEND_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(Board, wxFrame)
+                EVT_BUTTON(wxID_ANY, Board::StartGame)
+wxEND_EVENT_TABLE()
 
 
 
