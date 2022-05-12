@@ -19,10 +19,6 @@ public:
 
 
 private:
-    std::string name;
-    MarkType mark;
-    int score;
-    ChooserFactory *chooser;
     bool rememberFilledSquares[9];
 
 };

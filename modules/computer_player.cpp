@@ -7,11 +7,7 @@
 
 ComputerPlayer::ComputerPlayer() {
     name = "CPU";
-    mark = MarkType::O;
     score = 0;
-    for(int i = 0; i < 9; i++){
-        rememberFilledSquares[i] = false;
-    }
 }
 
 void ComputerPlayer::setMark(MarkType mark, void *p) {
