@@ -5,6 +5,7 @@
 #include "board.h"
 #include "player.h"
 #include "chooser_factory.h"
+#include "smart_chooser.h"
 #include "filled_squares.h"
 
 class ComputerPlayer : public Player{
@@ -20,6 +21,7 @@ public:
 
 private:
     bool rememberFilledSquares[9];
+    ChooserFactory *chooser;
 
 };
 
