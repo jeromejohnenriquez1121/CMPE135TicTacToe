@@ -12,7 +12,7 @@ public:
     ComputerPlayer();
 
     // Overriden methods:
-    void setMark(MarkType mark, void *p);
+    void setMark(MarkType mark, Board *board);
 
     void rememberFilledSquare(int index);
     void voidFilledSquares();

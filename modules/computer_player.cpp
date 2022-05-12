@@ -1,7 +1,3 @@
-//
-// Created by Jerome Enriquez on 5/11/22.
-//
-
 #include "computer_player.h"
 #include <stdlib.h>
 
@@ -10,78 +6,84 @@ ComputerPlayer::ComputerPlayer() {
     score = 0;
 }
 
-void ComputerPlayer::setMark(MarkType mark, void *p) {
-    Board *b = (Board*)(p);
+void ComputerPlayer::setMark(MarkType mark, Board *board) {
 
-    std::cout << rememberFilledSquares[0] << rememberFilledSquares[1] << rememberFilledSquares[2] <<
-    rememberFilledSquares[3] << rememberFilledSquares[4] << rememberFilledSquares[5] <<
-    rememberFilledSquares[6] << rememberFilledSquares[7] << rememberFilledSquares[8] << std::endl;
+    if(board->button1->GetLabel() == 'X' && board->button2->GetLabel() == 'X' && !rememberFilledSquares[2]){
 
-    if(rememberFilledSquares[0] && rememberFilledSquares[1] && !rememberFilledSquares[2]){
-
-        b->markSquare(mark, 2);
+        board->markSquare(mark, 2);
     }
-    else if(rememberFilledSquares[0] && rememberFilledSquares[4] && !rememberFilledSquares[8]){
+    else if(board->button1->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[8]){
 
-        b->markSquare(mark, 8);
+        board->markSquare(mark, 8);
     }
-    else if(rememberFilledSquares[0] && rememberFilledSquares[3] && !rememberFilledSquares[6]){
+    else if(board->button1->GetLabel() == 'X' && board->button4->GetLabel() == 'X' && !rememberFilledSquares[6]){
 
-        b->markSquare(mark, 6);
+        board->markSquare(mark, 6);
     }
 
-    else if(rememberFilledSquares[1] && rememberFilledSquares[4] && !rememberFilledSquares[7]){
+    else if(board->button2->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[7]){
 
-        b->markSquare(mark, 7);
+        board->markSquare(mark, 7);
     }
-    else if(rememberFilledSquares[2] && rememberFilledSquares[1] && !rememberFilledSquares[0]){
+    else if(board->button3->GetLabel() == 'X' && board->button2->GetLabel() == 'X' && !rememberFilledSquares[0]){
 
-        b->markSquare(mark, 0);
+        board->markSquare(mark, 0);
     }
-    else if(rememberFilledSquares[2] && rememberFilledSquares[4] && !rememberFilledSquares[6]){
+    else if(board->button3->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[6]){
 
-        b->markSquare(mark, 6);
+        board->markSquare(mark, 6);
     }
-    else if(rememberFilledSquares[2] && rememberFilledSquares[5] && !rememberFilledSquares[8]){
+    else if(board->button3->GetLabel() == 'X' && board->button6->GetLabel() == 'X' && !rememberFilledSquares[8]){
 
-        b->markSquare(mark, 8);
+        board->markSquare(mark, 8);
     }
-    else if(rememberFilledSquares[3] && rememberFilledSquares[4] && !rememberFilledSquares[5]){
+    else if(board->button4->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[5]){
 
-        b->markSquare(mark, 5);
+        board->markSquare(mark, 5);
     }
-    else if(rememberFilledSquares[5] && rememberFilledSquares[4] && !rememberFilledSquares[3]){
+    else if(board->button6->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[3]){
 
-        b->markSquare(mark, 3);
+        board->markSquare(mark, 3);
     }
-    else if(rememberFilledSquares[6] && rememberFilledSquares[3] && !rememberFilledSquares[0]){
+    else if(board->button7->GetLabel() == 'X' && board->button4->GetLabel() == 'X'&& !rememberFilledSquares[0]){
 
-        b->markSquare(mark, 0);
+        board->markSquare(mark, 0);
     }
-    else if(rememberFilledSquares[6] && rememberFilledSquares[4] && !rememberFilledSquares[2]){
+    else if(board->button7->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[2]){
 
-        b->markSquare(mark, 2);
+        board->markSquare(mark, 2);
     }
-    else if(rememberFilledSquares[6] && rememberFilledSquares[7] && !rememberFilledSquares[8]){
+    else if(board->button7->GetLabel() == 'X' && board->button8->GetLabel() == 'X' && !rememberFilledSquares[8]){
 
-        b->markSquare(mark, 8);
+        board->markSquare(mark, 8);
     }
-    else if(rememberFilledSquares[7] && rememberFilledSquares[4] && !rememberFilledSquares[1]){
+    else if(board->button8->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[1]){
 
-        b->markSquare(mark, 1);
+        board->markSquare(mark, 1);
     }
-    else if(rememberFilledSquares[8] && rememberFilledSquares[4] && !rememberFilledSquares[0]){
+    else if(board->button9->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[0]){
 
-        b->markSquare(mark, 0);
+        board->markSquare(mark, 0);
     }
-    else if(rememberFilledSquares[8] && rememberFilledSquares[5] && !rememberFilledSquares[2]){
+    else if(board->button9->GetLabel() == 'X' && board->button6->GetLabel() == 'X' && !rememberFilledSquares[2]){
 
-        b->markSquare(mark, 2);
+        board->markSquare(mark, 2);
     }
-    else if(rememberFilledSquares[8] && rememberFilledSquares[7] && !rememberFilledSquares[6]){
+    else if(board->button9->GetLabel() == 'X' && board->button8->GetLabel() == 'X' && !rememberFilledSquares[6]){
 
-        b->markSquare(mark, 6);
+        board->markSquare(mark, 6);
     }
+
+    else if(board->button1->GetLabel() == 'O' && board->button3->GetLabel() == 'O' && !rememberFilledSquares[6]){
+
+        board->markSquare(mark, 1);
+    }
+
+    else if(board->button1->GetLabel() == 'O' && board->button9->GetLabel() == 'O' && !rememberFilledSquares[6]){
+
+        board->markSquare(mark, 4);
+    }
+
     else{
         int index = (rand() % 8);
         std::cout << "Index: " << index << std::endl;
@@ -94,20 +96,11 @@ void ComputerPlayer::setMark(MarkType mark, void *p) {
             }
             count++;
         }
-        b->markSquare(mark, index);
+        board->markSquare(mark, index);
     }
 
-    std::cout << rememberFilledSquares[0] << rememberFilledSquares[1] << rememberFilledSquares[2] <<
-              rememberFilledSquares[3] << rememberFilledSquares[4] << rememberFilledSquares[5] <<
-              rememberFilledSquares[6] << rememberFilledSquares[7] << rememberFilledSquares[8] << std::endl;
 
-    /*
-     *
-     * 1 2 3
-     * 4 5 6
-     * 7 8 9
-     *
-     */
+
 }
 
 void ComputerPlayer::rememberFilledSquare(int index){
