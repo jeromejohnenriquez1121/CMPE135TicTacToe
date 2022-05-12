@@ -3,7 +3,10 @@
 
 ComputerPlayer::ComputerPlayer() {
     name = "CPU";
+    mark = MarkType::O;
     score = 0;
+
+    std::cout << "CPU score: " << score << std::endl;
 }
 
 void ComputerPlayer::setMark(MarkType mark, Board *board) {
@@ -84,6 +87,11 @@ void ComputerPlayer::setMark(MarkType mark, Board *board) {
         board->markSquare(mark, 4);
     }
 
+    else if(board->button4->GetLabel() == 'O' && board->button5->GetLabel() == 'O' && !rememberFilledSquares[5]){
+
+        board->markSquare(mark, 5);
+    }
+
     else{
         int index = (rand() % 8);
         std::cout << "Index: " << index << std::endl;
@@ -99,9 +107,10 @@ void ComputerPlayer::setMark(MarkType mark, Board *board) {
         board->markSquare(mark, index);
     }
 
-
-
+    std::cout << "CPU score: " << score << std::endl;
 }
+
+
 
 void ComputerPlayer::rememberFilledSquare(int index){
     rememberFilledSquares[index] = true;

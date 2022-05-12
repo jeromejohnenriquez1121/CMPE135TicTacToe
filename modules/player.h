@@ -19,16 +19,19 @@ public:
     virtual void setMark(MarkType mark);
     virtual void setName(std::string name);
     virtual void incrementScore();
+    virtual void setScore(int num);
 
     // Get methods:
     std::string getName();
     MarkType getMark();
     int getScore();
 
+
 protected:
     std::string name;
     MarkType mark;
     int score;
+
 };
 
 

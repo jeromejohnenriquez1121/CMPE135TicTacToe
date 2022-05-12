@@ -24,6 +24,10 @@ void Player::incrementScore(){
     score += 1;
 }
 
+void Player::setScore(int num){
+    score = num;
+}
+
 void Player::setName(std::string name){
     this->name = name;
 }
@@ -38,4 +42,3 @@ MarkType Player::getMark(){
 int Player::getScore(){
     return score;
 }
-

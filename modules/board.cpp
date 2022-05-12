@@ -17,8 +17,6 @@ Board::Board(const wxString &title)
 
     win = false;
 
-
-
     wxBoxSizer *vSizer = new wxBoxSizer(wxVERTICAL);
 
     titleText = new wxStaticText(
@@ -275,7 +273,9 @@ void Board::clearBoard(wxCommandEvent &event) {
 }
 
 bool Board::checkWin(){
-    std::stringstream ss;
+    std::stringstream ss1;
+    std::stringstream ss2;
+
     std::string pScore; std::string cScore;
 
     // Rows
@@ -358,12 +358,15 @@ bool Board::checkWin(){
         cp->incrementScore();
     }
 
-    ss << p->getScore();
-    ss >> pScore;
-    ss << cp->getScore();
-    ss >> cScore;
+    ss1 << p->getScore();
+    ss1 >> pScore;
+    ss2 << cp->getScore();
+    ss2 >> cScore;
+    std::cout << "CPU score: " << cScore << std::endl;
 
-    titleText->SetLabel(p->getName() + " : " + pScore + " | " + cp->getName() + " : " + cScore);
+    if(win){
+        titleText->SetLabel(p->getName() + " : " + pScore + " | " + cp->getName() + " : " + cScore);
+    }
 
     return true;
 }

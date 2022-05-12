@@ -47,13 +47,6 @@ public:
     bool isFilled(int index);
     bool checkWin();
 
-
-
-private:
-    wxPanel *startPanel;
-    wxPanel *gamePanel;
-
-    wxStaticText *titleText;
     wxButton *button1;
     wxButton *button2;
     wxButton *button3;
@@ -64,6 +57,13 @@ private:
     wxButton *button8;
     wxButton *button9;
     wxButton *clearButton;
+
+private:
+    wxPanel *startPanel;
+    wxPanel *gamePanel;
+
+    wxStaticText *titleText;
+
     bool win;
 
     bool filledSquares[9];
