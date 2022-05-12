@@ -24,14 +24,7 @@ void ComputerPlayer::setMode(ModeType mode){
     }
 }
 
-std::string ComputerPlayer::getMode(){
-    if(currentMode == ModeType::Novice){
-        return "Mode: Novice";
-    }
-    else if(currentMode == ModeType::Smart){
-        return "Mode: Smart";
-    }
-
-    return "";
+ModeType ComputerPlayer::getMode(){
+    return currentMode;
 }
 

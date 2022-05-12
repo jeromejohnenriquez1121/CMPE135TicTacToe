@@ -342,7 +342,6 @@ bool Board::checkWin(){
     ss1 >> pScore;
     ss2 << cp->getScore();
     ss2 >> cScore;
-    std::cout << "CPU score: " << cScore << std::endl;
 
     if(win){
         titleText->SetLabel(p->getName() + " : " + pScore + " | " + cp->getName() + " : " + cScore);
@@ -352,14 +351,21 @@ bool Board::checkWin(){
 }
 
 void Board::changeMode(wxCommandEvent& event){
-    if(cp->getMode() == "Novice"){
-        cp->setMode(ModeType::Smart);
-    }
-    else if(cp->getMode() == "Smart"){
+    if(cp->getMode() == ModeType::Smart){
         cp->setMode(ModeType::Novice);
+        changeModeButton->SetLabel("Mode: Novice");
+        std::cout << "Mode changed to novice" << std::endl;
     }
 
-    changeModeButton->SetLabel(cp->getMode());
+    else if(cp->getMode() == ModeType::Novice){
+        cp->setMode(ModeType::Smart);
+        changeModeButton->SetLabel("Mode: Smart");
+        std::cout << "Mode changed to smart" << std::endl;
+
+    }
+
+
+
 
 }
 

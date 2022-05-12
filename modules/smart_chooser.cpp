@@ -82,17 +82,17 @@ void SmartChooser::setCPUMark(MarkType mark, Board *board){
 
         else if(board->button1->GetLabel() == 'O' && board->button3->GetLabel() == 'O' && !rememberFilledSquares[6]){
 
-            board->markSquare(mark, 1);
+            board->markSquare(mark, 6);
         }
 
         else if(board->button1->GetLabel() == 'O' && board->button9->GetLabel() == 'O' && !rememberFilledSquares[6]){
 
-            board->markSquare(mark, 4);
+            board->markSquare(mark, 6);
         }
 
         else if(board->button5->GetLabel() == 'O' && board->button6->GetLabel() == 'O' && !rememberFilledSquares[3]){
 
-            board->markSquare(mark, 5);
+            board->markSquare(mark, 3);
         }
         else if(board->button4->GetLabel() == 'O' && board->button5->GetLabel() == 'O' && !rememberFilledSquares[5]){
 
@@ -104,15 +104,15 @@ void SmartChooser::setCPUMark(MarkType mark, Board *board){
         }
         else if(board->button7->GetLabel() == 'O' && board->button8->GetLabel() == 'O' && !rememberFilledSquares[8]){
 
-            board->markSquare(mark, 5);
+            board->markSquare(mark, 8);
         }
         else if(board->button8->GetLabel() == 'O' && board->button9->GetLabel() == 'O' && !rememberFilledSquares[6]){
 
-            board->markSquare(mark, 5);
+            board->markSquare(mark, 6);
         }
         else if(board->button7->GetLabel() == 'O' && board->button9->GetLabel() == 'O' && !rememberFilledSquares[7]){
 
-            board->markSquare(mark, 5);
+            board->markSquare(mark, 7);
         }
 
         // Columns

@@ -18,7 +18,7 @@ public:
     void setMark(MarkType mark, Board *board);
 
     void setMode(ModeType mode);
-    std::string getMode();
+    ModeType getMode();
 
 private:
     ChooserFactory *chooser;

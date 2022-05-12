@@ -11,13 +11,6 @@ void NoviceChooser::setCPUMark(MarkType mark, Board *board) {
     }
 
 
-    std::cout << "Filled Squares: " << std::endl;
-    for(int i = 0; i < 9; i++){
-        std::cout << rememberFilledSquares[i] << ' ';
-    }
-    std::cout << "Filled Squares" << std::endl;
-
-
     if(board->button1->GetLabel() == 'X' && board->button2->GetLabel() == 'X' && !rememberFilledSquares[2]){
 
         board->markSquare(mark, 2);
@@ -86,11 +79,9 @@ void NoviceChooser::setCPUMark(MarkType mark, Board *board) {
 
     else {
         int index = (rand() % 8);
-        std::cout << "Index: " << index << std::endl;
         int count = 0;
         while (rememberFilledSquares[index]) {
             index = (rand() % 8);
-            std::cout << "Loop Index: " << index << std::endl;
             if (count == 8) {
                 break;
             }
