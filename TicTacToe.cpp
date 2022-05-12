@@ -48,10 +48,7 @@ wxBEGIN_EVENT_TABLE(Board, wxFrame)
                 EVT_BUTTON(Button9ID, Board::markQuare9)
                 EVT_BUTTON(ClearButtonID, Board::clearBoard)
                 EVT_BUTTON(ChangeModeID, Board::changeMode)
-
-
 wxEND_EVENT_TABLE()
-
 
 
 // Similar to main function
@@ -66,10 +63,6 @@ bool MyApp::OnInit()
 
     if ( !wxApp::OnInit() )
         return false;
-
-    //MyFrame *frame = new MyFrame("TicTacToe");
-
-    // frame->Show(true);
 
     TicTacToeBoard->Show(true);
 

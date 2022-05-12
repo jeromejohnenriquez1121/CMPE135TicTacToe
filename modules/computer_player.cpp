@@ -1,11 +1,9 @@
 #include "computer_player.h"
-#include <stdlib.h>
 
 ComputerPlayer::ComputerPlayer() {
     name = "CPU";
     mark = MarkType::O;
     score = 0;
-    std::cout << "CPU score: " << score << std::endl;
     chooser = new SmartChooser();
 }
 

@@ -15,7 +15,7 @@ Board::Board(const wxString &title)
         filledSquares[i] = false;
     }
 
-    win = false;
+    hasWinner = false;
 
     wxBoxSizer *vSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -31,20 +31,24 @@ Board::Board(const wxString &title)
 
     this->SetSizerAndFit(vSizer);
 
-    wxPanel *gamePanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(625, 400), wxALIGN_CENTRE_HORIZONTAL);
+    gamePanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(625, 400), wxALIGN_CENTRE_HORIZONTAL);
 
+    // First Row
     button1 = new wxButton(gamePanel, Button1ID, " ", wxPoint(100, 100), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button2 = new wxButton(gamePanel, Button2ID, " ", wxPoint(200, 100), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button3 = new wxButton(gamePanel, Button3ID, " ", wxPoint(300, 100), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
 
+    // Second Row
     button4 = new wxButton(gamePanel, Button4ID, " ", wxPoint(100, 200), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button5 = new wxButton(gamePanel, Button5ID, " ", wxPoint(200, 200), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button6 = new wxButton(gamePanel, Button6ID, " ", wxPoint(300, 200), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
 
+    // Third Row
     button7 = new wxButton(gamePanel, Button7ID, " ", wxPoint(100, 300), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button8 = new wxButton(gamePanel, Button8ID, " ", wxPoint(200, 300), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button9 = new wxButton(gamePanel, Button9ID, " ", wxPoint(300, 300), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
 
+    // Side Buttons
     clearButton = new wxButton(gamePanel, ClearButtonID, "Restart", wxPoint(500, 300), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     changeModeButton = new wxButton(gamePanel, ChangeModeID, "Mode: Smart", wxPoint(500, 350), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);;
 
@@ -56,9 +60,8 @@ Board::Board(const wxString &title)
 }
 
 
-
 void Board::markSquare(MarkType mark, int index){
-    if(index >= 0 && index < 9 && !isFilled(index) && !win){
+    if(index >= 0 && index < 9 && !isFilled(index) && !hasWinner){
         if(index == 0){
             if(mark == MarkType::X){
                 button1->SetLabel('X');
@@ -247,7 +250,7 @@ void Board::clearBoard(wxCommandEvent &event) {
     }
 
     titleText->SetLabel(" ");
-    win = false;
+    hasWinner = false;
     std::cout << "Cleared squares" << std::endl;
 
 }
@@ -260,81 +263,81 @@ bool Board::checkWin(){
 
     // Rows
     if(button1->GetLabel() == 'X' && button2->GetLabel() == 'X' && button3->GetLabel() == 'X') {
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }
     else if(button1->GetLabel() == 'O' && button2->GetLabel() == 'O' && button3->GetLabel() == 'O'){
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
 
     }
 
     else if(button4->GetLabel() == 'X' && button5->GetLabel() == 'X' && button6->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button4->GetLabel() == 'O' && button5->GetLabel() == 'O' && button6->GetLabel() == 'O'){
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
 
     }
 
     else if(button7->GetLabel() == 'X' && button8->GetLabel() == 'X' && button9->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button7->GetLabel() == 'O' && button8->GetLabel() == 'O' && button9->GetLabel() == 'O'){
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
 
     }
 
     else if(button1->GetLabel() == 'X' && button4->GetLabel() == 'X' && button7->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button1->GetLabel() == 'O' && button4->GetLabel() == 'O' && button7->GetLabel() == 'O'){
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
 
     }
 
     else if(button2->GetLabel() == 'X' && button5->GetLabel() == 'X' && button8->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button2->GetLabel() == 'O' && button5->GetLabel() == 'O' && button8->GetLabel() == 'O'){
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
 
     }
 
     else if(button3->GetLabel() == 'X' && button6->GetLabel() == 'X' && button9->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button3->GetLabel() == 'O' && button6->GetLabel() == 'O' && button9->GetLabel() == 'O'){
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
 
     }
 
     else if(button1->GetLabel() == 'X' && button5->GetLabel() == 'X' && button9->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button1->GetLabel() == 'O' && button5->GetLabel() == 'O' && button9->GetLabel() == 'O') {
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
     }
 
     else if(button3->GetLabel() == 'X' && button5->GetLabel() == 'X' && button7->GetLabel() == 'X'){
-        win = true;
+        hasWinner = true;
         p->incrementScore();
 
     }else if(button3->GetLabel() == 'O' && button5->GetLabel() == 'O' && button7->GetLabel() == 'O') {
-        win = true;
+        hasWinner = true;
         cp->incrementScore();
     }
 
@@ -343,7 +346,7 @@ bool Board::checkWin(){
     ss2 << cp->getScore();
     ss2 >> cScore;
 
-    if(win){
+    if(hasWinner){
         titleText->SetLabel(p->getName() + " : " + pScore + " | " + cp->getName() + " : " + cScore);
     }
 
@@ -363,10 +366,6 @@ void Board::changeMode(wxCommandEvent& event){
         std::cout << "Mode changed to smart" << std::endl;
 
     }
-
-
-
-
 }
 
 

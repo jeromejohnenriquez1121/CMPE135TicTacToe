@@ -42,12 +42,12 @@ public:
     void clearBoard(wxCommandEvent& event);
     void changeMode(wxCommandEvent& event);
 
-
     // Member methods
     void markSquare(MarkType mark, int index);
     bool isFilled(int index);
     bool checkWin();
 
+    // wxButtons used for the game
     wxButton *button1;
     wxButton *button2;
     wxButton *button3;
@@ -61,16 +61,17 @@ public:
     wxButton *changeModeButton;
 
 private:
-    wxPanel *startPanel;
+    // wxPanels used in the game
     wxPanel *gamePanel;
-
     wxStaticText *titleText;
 
     // Instance Variables
-    bool win;
+    bool hasWinner;
     bool filledSquares[9];
+
     wxDECLARE_EVENT_TABLE();
 };
+
 
 enum ButtonID
 {

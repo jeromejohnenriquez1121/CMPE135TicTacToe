@@ -14,16 +14,18 @@ class ComputerPlayer : public Player{
 public:
     ComputerPlayer();
 
-    // Overriden methods:
+    // Override parent methods:
     void setMark(MarkType mark, Board *board);
 
+    // Self setters:
     void setMode(ModeType mode);
+
+    // Self getters:
     ModeType getMode();
 
 private:
     ChooserFactory *chooser;
     ModeType currentMode;
-
 };
 
 #endif //TICTACTOE_COMPUTER_PLAYER_H
