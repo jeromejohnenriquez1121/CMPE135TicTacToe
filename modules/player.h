@@ -25,7 +25,7 @@ public:
     MarkType getMark();
     int getScore();
 
-private:
+protected:
     std::string name;
     MarkType mark;
     int score;
