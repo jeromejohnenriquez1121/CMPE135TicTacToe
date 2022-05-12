@@ -27,44 +27,24 @@ public:
 };
 
 
-//class MyFrame : public wxFrame
-//{
-//public:
-//    // ctor(s)
-//    MyFrame(const wxString& title);
-//
-//    // event handlers (these functions should _not_ be virtual)
-//    void OnQuit(wxCommandEvent& event);
-//    void OnAbout(wxCommandEvent& event);
-//    void StartGame(wxCommandEvent &event);
-//
-//private:
-//    wxPanel *start_panel;
-//    wxPanel *game_panel;
-//
-//wxDECLARE_EVENT_TABLE();
-//};
-
-// ----------------------------------------------------------------------------
-// constants
-// ----------------------------------------------------------------------------
 
 
-enum
-{
-    // menu items
-    Minimal_Quit = wxID_EXIT,
-    Minimal_About = wxID_ABOUT,
-    Start_Button = wxID_ANY,
-};
 
 // ----------------------------------------------------------------------------
 // event tables and other macros for wxWidgets
 // ----------------------------------------------------------------------------
 
-
 wxBEGIN_EVENT_TABLE(Board, wxFrame)
-                EVT_BUTTON(wxID_ANY, Board::StartGame)
+                EVT_BUTTON(Button1ID, Board::markQuare1)
+                EVT_BUTTON(Button2ID, Board::markQuare2)
+                EVT_BUTTON(Button3ID, Board::markQuare3)
+                EVT_BUTTON(Button4ID, Board::markQuare4)
+                EVT_BUTTON(Button5ID, Board::markQuare5)
+                EVT_BUTTON(Button6ID, Board::markQuare6)
+                EVT_BUTTON(Button7ID, Board::markQuare7)
+                EVT_BUTTON(Button8ID, Board::markQuare8)
+                EVT_BUTTON(Button9ID, Board::markQuare9)
+
 wxEND_EVENT_TABLE()
 
 
@@ -91,64 +71,3 @@ bool MyApp::OnInit()
 
     return true;
 }
-
-// ----------------------------------------------------------------------------
-// main frame
-// ----------------------------------------------------------------------------
-
-//MyFrame::MyFrame(const wxString& title)
-//        : wxFrame(NULL, wxID_ANY, title)
-//{
-//
-//
-//#if wxUSE_MENUS
-//    wxMenu *fileMenu = new wxMenu;
-//    wxMenu *helpMenu = new wxMenu;
-//    helpMenu->Append(Minimal_About, "&About\tF1", "Show about dialog");
-//    fileMenu->Append(Minimal_Quit, "E&xit\tAlt-X", "Quit this program");
-//
-//    wxMenuBar *menuBar = new wxMenuBar();
-//    menuBar->Append(fileMenu, "&File");
-//    menuBar->Append(helpMenu, "&Help");
-//
-//    SetMenuBar(menuBar);
-//#endif
-//
-//    bool game_started = false;
-//
-//    // Title panel
-//    wxStaticText *title_text = new wxStaticText(this, wxID_ANY, "Welcome to Tic Tac Toe",wxDefaultPosition, wxSize(600, 50), wxALIGN_CENTRE_HORIZONTAL);
-//    title_text->SetBackgroundColour(wxColor(100, 100, 200));
-//
-//
-//}
-//
-//
-//// event handlers
-//
-//void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
-//{
-//    // true is to force the frame to close
-//    Close(true);
-//}
-//
-//void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
-//{
-//    wxMessageBox(wxString::Format
-//                         (
-//                                 "Welcome to %s!\n"
-//                                 "\n"
-//                                 "This is the minimal wxWidgets sample\n"
-//                                 "running under %s.",
-//                                 wxVERSION_STRING,
-//                                 wxGetOsDescription()
-//                         ),
-//                 "About wxWidgets minimal sample",
-//                 wxOK | wxICON_INFORMATION,
-//                 this);
-//}
-//
-//void MyFrame::StartGame(wxCommandEvent& event){
-//    start_panel->Show(false);
-//    game_panel->Show(true);
-//}
