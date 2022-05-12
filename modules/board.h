@@ -15,14 +15,13 @@
 #include "wx/wx.h"
 #endif
 
+#include "computer_player.h"
 
 #ifndef BOARD_H
 #define BOARD_H
 
-enum class MarkType{
-    X,
-    O
-};
+#include "mark_enum.h"
+
 
 
 class Board : public wxFrame{
@@ -31,7 +30,6 @@ public:
     Board(const wxString& title);
 
     // Event handlers
-    // void StartGame(wxCommandEvent& event);
     void markQuare1(wxCommandEvent& event);
     void markQuare2(wxCommandEvent& event);
     void markQuare3(wxCommandEvent& event);
@@ -41,11 +39,12 @@ public:
     void markQuare7(wxCommandEvent& event);
     void markQuare8(wxCommandEvent& event);
     void markQuare9(wxCommandEvent& event);
+    void clearBoard(wxCommandEvent& event);
 
-
-    //void ClearBoard(wxCommandEvent &event);
+    // Member methods
     void markSquare(MarkType mark, int index);
     bool isFilled(int index);
+
 
 private:
     wxPanel *startPanel;
@@ -60,7 +59,7 @@ private:
     wxButton *button7;
     wxButton *button8;
     wxButton *button9;
-
+    wxButton *clearButton;
 
     bool filledSquares[9];
     wxDECLARE_EVENT_TABLE();
@@ -76,10 +75,9 @@ enum ButtonID
     Button6ID,
     Button7ID,
     Button8ID,
-    Button9ID
-
+    Button9ID,
+    ClearButtonID,
 };
-
 
 
 

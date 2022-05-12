@@ -17,6 +17,7 @@
 #endif
 
 #include "modules/board.h"
+#include "modules/computer_player.h"
 
 // Define a new application type, each program should derive a class from wxApp
 class MyApp : public wxApp
@@ -27,6 +28,7 @@ public:
 };
 
 
+Board *TicTacToeBoard = new Board("TicTacToe");
 
 
 
@@ -44,6 +46,7 @@ wxBEGIN_EVENT_TABLE(Board, wxFrame)
                 EVT_BUTTON(Button7ID, Board::markQuare7)
                 EVT_BUTTON(Button8ID, Board::markQuare8)
                 EVT_BUTTON(Button9ID, Board::markQuare9)
+                EVT_BUTTON(ClearButtonID, Board::clearBoard)
 
 wxEND_EVENT_TABLE()
 
@@ -66,7 +69,6 @@ bool MyApp::OnInit()
 
     // frame->Show(true);
 
-    Board *TicTacToeBoard = new Board("TicTacToe");
     TicTacToeBoard->Show(true);
 
     return true;
