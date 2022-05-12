@@ -53,6 +53,7 @@ private:
     wxPanel *startPanel;
     wxPanel *gamePanel;
 
+    wxStaticText *titleText;
     wxButton *button1;
     wxButton *button2;
     wxButton *button3;

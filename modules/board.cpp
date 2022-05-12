@@ -3,6 +3,7 @@
 //
 
 #include "board.h"
+#include <sstream>
 
 static Player *p = new Player("Human", MarkType::X);
 static ComputerPlayer *cp = new ComputerPlayer();
@@ -20,10 +21,10 @@ Board::Board(const wxString &title)
 
     wxBoxSizer *vSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxStaticText *titleText = new wxStaticText(
+    titleText = new wxStaticText(
             this,
             wxID_ANY,
-            "Welcome Tic Tac Toe",
+            " ",
             wxDefaultPosition,
             wxSize(600, 50),
             wxALIGN_CENTRE_HORIZONTAL);
@@ -51,10 +52,7 @@ Board::Board(const wxString &title)
     vSizer->Add(titleText, 0, wxEXPAND);
     vSizer->Add(gamePanel, 1, wxEXPAND);
 
-
     this->SetSizerAndFit(vSizer);
-
-
 }
 
 
@@ -270,49 +268,102 @@ void Board::clearBoard(wxCommandEvent &event) {
     }
 
     cp->voidFilledSquares();
+    titleText->SetLabel(" ");
     win = false;
     std::cout << "Cleared squares" << std::endl;
 
 }
 
 bool Board::checkWin(){
-    // Horizontal
-    if(filledSquares[0] && filledSquares[1] && filledSquares[2]) {
-        win = true;
+    std::stringstream ss;
+    std::string pScore; std::string cScore;
 
-        if(button1->GetLabel() == 'X'){
-            std::cout << "Player won";
-        }
+    // Rows
+    if(button1->GetLabel() == 'X' && button2->GetLabel() == 'X' && button3->GetLabel() == 'X') {
+        win = true;
+        p->incrementScore();
 
     }
-    if(filledSquares[3] && filledSquares[4] && filledSquares[5]) {
+    else if(button1->GetLabel() == 'O' && button2->GetLabel() == 'O' && button3->GetLabel() == 'O'){
         win = true;
-    }
-    if(filledSquares[6] && filledSquares[7] && filledSquares[8]) {
-        win = true;
-    }
+        cp->incrementScore();
 
-    // Vertical
-    if(filledSquares[0] && filledSquares[3] && filledSquares[6]) {
-        win = true;
-    }
-    if(filledSquares[1] && filledSquares[4] && filledSquares[7]){
-        win = true;
-    }
-    if(filledSquares[2] && filledSquares[7] && filledSquares[8]) {
-        win = true;
     }
 
-    // Diagonal
-    if(filledSquares[0] && filledSquares[5] && filledSquares[9]) {
+    else if(button4->GetLabel() == 'X' && button5->GetLabel() == 'X' && button6->GetLabel() == 'X'){
         win = true;
-    }
-    if(filledSquares[3] && filledSquares[5] && filledSquares[7]) {
+        p->incrementScore();
+
+    }else if(button4->GetLabel() == 'O' && button5->GetLabel() == 'O' && button6->GetLabel() == 'O'){
         win = true;
+        cp->incrementScore();
+
     }
-    else{
-        win = false;
+
+    else if(button7->GetLabel() == 'X' && button8->GetLabel() == 'X' && button9->GetLabel() == 'X'){
+        win = true;
+        p->incrementScore();
+
+    }else if(button7->GetLabel() == 'O' && button8->GetLabel() == 'O' && button9->GetLabel() == 'O'){
+        win = true;
+        cp->incrementScore();
+
     }
+
+    else if(button1->GetLabel() == 'X' && button4->GetLabel() == 'X' && button7->GetLabel() == 'X'){
+        win = true;
+        p->incrementScore();
+
+    }else if(button1->GetLabel() == 'O' && button4->GetLabel() == 'O' && button7->GetLabel() == 'O'){
+        win = true;
+        cp->incrementScore();
+
+    }
+
+    else if(button2->GetLabel() == 'X' && button5->GetLabel() == 'X' && button8->GetLabel() == 'X'){
+        win = true;
+        p->incrementScore();
+
+    }else if(button2->GetLabel() == 'O' && button5->GetLabel() == 'O' && button8->GetLabel() == 'O'){
+        win = true;
+        cp->incrementScore();
+
+    }
+
+    else if(button3->GetLabel() == 'X' && button6->GetLabel() == 'X' && button9->GetLabel() == 'X'){
+        win = true;
+        p->incrementScore();
+
+    }else if(button3->GetLabel() == 'O' && button6->GetLabel() == 'O' && button9->GetLabel() == 'O'){
+        win = true;
+        cp->incrementScore();
+
+    }
+
+    else if(button1->GetLabel() == 'X' && button5->GetLabel() == 'X' && button9->GetLabel() == 'X'){
+        win = true;
+        p->incrementScore();
+
+    }else if(button1->GetLabel() == 'O' && button5->GetLabel() == 'O' && button9->GetLabel() == 'O') {
+        win = true;
+        cp->incrementScore();
+    }
+
+    else if(button3->GetLabel() == 'X' && button5->GetLabel() == 'X' && button7->GetLabel() == 'X'){
+        win = true;
+        p->incrementScore();
+
+    }else if(button3->GetLabel() == 'O' && button5->GetLabel() == 'O' && button7->GetLabel() == 'O') {
+        win = true;
+        cp->incrementScore();
+    }
+
+    ss << p->getScore();
+    ss >> pScore;
+    ss << cp->getScore();
+    ss >> cScore;
+
+    titleText->SetLabel(p->getName() + " : " + pScore + " | " + cp->getName() + " : " + cScore);
 
     return true;
 }
