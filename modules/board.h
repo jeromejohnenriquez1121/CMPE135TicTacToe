@@ -41,9 +41,12 @@ public:
     void markQuare9(wxCommandEvent& event);
     void clearBoard(wxCommandEvent& event);
 
+
     // Member methods
     void markSquare(MarkType mark, int index);
     bool isFilled(int index);
+    bool checkWin();
+
 
 
 private:
@@ -60,6 +63,7 @@ private:
     wxButton *button8;
     wxButton *button9;
     wxButton *clearButton;
+    bool win;
 
     bool filledSquares[9];
     wxDECLARE_EVENT_TABLE();

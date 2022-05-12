@@ -4,6 +4,7 @@
 
 #include "board.h"
 
+static Player *p = new Player("Human", MarkType::X);
 static ComputerPlayer *cp = new ComputerPlayer();
 
 Board::Board(const wxString &title)
@@ -13,7 +14,7 @@ Board::Board(const wxString &title)
         filledSquares[i] = false;
     }
 
-
+    win = false;
 
 
 
@@ -59,7 +60,7 @@ Board::Board(const wxString &title)
 
 
 void Board::markSquare(MarkType mark, int index){
-    if(index >= 0 && index < 9 && !isFilled(index)){
+    if(index >= 0 && index < 9 && !isFilled(index) && !win){
         std::cout << "markSquare: " << index << std::endl;
         if(index == 0){
             if(mark == MarkType::X){
@@ -70,6 +71,9 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+            std::cout << "Win: " << win << std::endl;
+
         }
         else if(index == 1){
             if(mark == MarkType::X){
@@ -80,6 +84,9 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 2){
@@ -91,6 +98,9 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 3){
@@ -102,6 +112,9 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 4){
@@ -113,6 +126,9 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 5){
@@ -124,6 +140,10 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 6){
@@ -135,6 +155,10 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 7){
@@ -146,6 +170,10 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+
+            std::cout << "Win: " << win << std::endl;
+
 
         }
         else if(index == 8){
@@ -157,6 +185,10 @@ void Board::markSquare(MarkType mark, int index){
             }
             filledSquares[index] = true;
             cp->rememberFilledSquare(index);
+            checkWin();
+
+            std::cout << "Win: " << win << std::endl;
+
 
         }
     }
@@ -238,8 +270,51 @@ void Board::clearBoard(wxCommandEvent &event) {
     }
 
     cp->voidFilledSquares();
+    win = false;
     std::cout << "Cleared squares" << std::endl;
+
 }
 
+bool Board::checkWin(){
+    // Horizontal
+    if(filledSquares[0] && filledSquares[1] && filledSquares[2]) {
+        win = true;
+
+        if(button1->GetLabel() == 'X'){
+            std::cout << "Player won";
+        }
+
+    }
+    if(filledSquares[3] && filledSquares[4] && filledSquares[5]) {
+        win = true;
+    }
+    if(filledSquares[6] && filledSquares[7] && filledSquares[8]) {
+        win = true;
+    }
+
+    // Vertical
+    if(filledSquares[0] && filledSquares[3] && filledSquares[6]) {
+        win = true;
+    }
+    if(filledSquares[1] && filledSquares[4] && filledSquares[7]){
+        win = true;
+    }
+    if(filledSquares[2] && filledSquares[7] && filledSquares[8]) {
+        win = true;
+    }
+
+    // Diagonal
+    if(filledSquares[0] && filledSquares[5] && filledSquares[9]) {
+        win = true;
+    }
+    if(filledSquares[3] && filledSquares[5] && filledSquares[7]) {
+        win = true;
+    }
+    else{
+        win = false;
+    }
+
+    return true;
+}
 
 
