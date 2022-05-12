@@ -47,6 +47,8 @@ wxBEGIN_EVENT_TABLE(Board, wxFrame)
                 EVT_BUTTON(Button8ID, Board::markQuare8)
                 EVT_BUTTON(Button9ID, Board::markQuare9)
                 EVT_BUTTON(ClearButtonID, Board::clearBoard)
+                EVT_BUTTON(ChangeModeID, Board::changeMode)
+
 
 wxEND_EVENT_TABLE()
 

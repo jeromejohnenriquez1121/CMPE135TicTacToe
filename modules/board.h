@@ -40,6 +40,7 @@ public:
     void markQuare8(wxCommandEvent& event);
     void markQuare9(wxCommandEvent& event);
     void clearBoard(wxCommandEvent& event);
+    void changeMode(wxCommandEvent& event);
 
 
     // Member methods
@@ -57,6 +58,7 @@ public:
     wxButton *button8;
     wxButton *button9;
     wxButton *clearButton;
+    wxButton *changeModeButton;
 
 private:
     wxPanel *startPanel;
@@ -64,8 +66,8 @@ private:
 
     wxStaticText *titleText;
 
+    // Instance Variables
     bool win;
-
     bool filledSquares[9];
     wxDECLARE_EVENT_TABLE();
 };
@@ -82,6 +84,7 @@ enum ButtonID
     Button8ID,
     Button9ID,
     ClearButtonID,
+    ChangeModeID
 };
 
 

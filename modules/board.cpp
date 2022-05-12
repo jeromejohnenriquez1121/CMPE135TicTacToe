@@ -24,14 +24,14 @@ Board::Board(const wxString &title)
             wxID_ANY,
             " ",
             wxDefaultPosition,
-            wxSize(600, 50),
+            wxSize(625, 50),
             wxALIGN_CENTRE_HORIZONTAL);
 
     titleText->SetBackgroundColour(wxColor(100, 100, 200));
 
     this->SetSizerAndFit(vSizer);
 
-    wxPanel *gamePanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600, 400), wxALIGN_CENTRE_HORIZONTAL);
+    wxPanel *gamePanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(625, 400), wxALIGN_CENTRE_HORIZONTAL);
 
     button1 = new wxButton(gamePanel, Button1ID, " ", wxPoint(100, 100), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     button2 = new wxButton(gamePanel, Button2ID, " ", wxPoint(200, 100), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
@@ -46,6 +46,8 @@ Board::Board(const wxString &title)
     button9 = new wxButton(gamePanel, Button9ID, " ", wxPoint(300, 300), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
 
     clearButton = new wxButton(gamePanel, ClearButtonID, "Restart", wxPoint(500, 300), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
+    changeModeButton = new wxButton(gamePanel, ChangeModeID, "Mode: Smart", wxPoint(500, 350), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);;
+
 
     vSizer->Add(titleText, 0, wxEXPAND);
     vSizer->Add(gamePanel, 1, wxEXPAND);
@@ -57,7 +59,6 @@ Board::Board(const wxString &title)
 
 void Board::markSquare(MarkType mark, int index){
     if(index >= 0 && index < 9 && !isFilled(index) && !win){
-        std::cout << "markSquare: " << index << std::endl;
         if(index == 0){
             if(mark == MarkType::X){
                 button1->SetLabel('X');
@@ -66,9 +67,7 @@ void Board::markSquare(MarkType mark, int index){
                 button1->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
-            std::cout << "Win: " << win << std::endl;
 
         }
         else if(index == 1){
@@ -79,9 +78,7 @@ void Board::markSquare(MarkType mark, int index){
                 button2->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -93,9 +90,7 @@ void Board::markSquare(MarkType mark, int index){
                 button3->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -107,9 +102,7 @@ void Board::markSquare(MarkType mark, int index){
                 button4->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -121,9 +114,7 @@ void Board::markSquare(MarkType mark, int index){
                 button5->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -135,10 +126,8 @@ void Board::markSquare(MarkType mark, int index){
                 button6->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
 
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -150,10 +139,8 @@ void Board::markSquare(MarkType mark, int index){
                 button7->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
 
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -165,10 +152,8 @@ void Board::markSquare(MarkType mark, int index){
                 button8->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
 
-            std::cout << "Win: " << win << std::endl;
 
 
         }
@@ -180,11 +165,7 @@ void Board::markSquare(MarkType mark, int index){
                 button9->SetLabel('O');
             }
             filledSquares[index] = true;
-            cp->rememberFilledSquare(index);
             checkWin();
-
-            std::cout << "Win: " << win << std::endl;
-
 
         }
     }
@@ -265,7 +246,6 @@ void Board::clearBoard(wxCommandEvent &event) {
         filledSquares[i] = false;
     }
 
-    cp->voidFilledSquares();
     titleText->SetLabel(" ");
     win = false;
     std::cout << "Cleared squares" << std::endl;
@@ -370,5 +350,18 @@ bool Board::checkWin(){
 
     return true;
 }
+
+void Board::changeMode(wxCommandEvent& event){
+    if(cp->getMode() == "Novice"){
+        cp->setMode(ModeType::Smart);
+    }
+    else if(cp->getMode() == "Smart"){
+        cp->setMode(ModeType::Novice);
+    }
+
+    changeModeButton->SetLabel(cp->getMode());
+
+}
+
 
 

@@ -5,8 +5,10 @@
 #include "board.h"
 #include "player.h"
 #include "chooser_factory.h"
+#include "novice_chooser.h"
 #include "smart_chooser.h"
 #include "filled_squares.h"
+#include "mode_enum.h"
 
 class ComputerPlayer : public Player{
 public:
@@ -15,13 +17,12 @@ public:
     // Overriden methods:
     void setMark(MarkType mark, Board *board);
 
-    void rememberFilledSquare(int index);
-    void voidFilledSquares();
-
+    void setMode(ModeType mode);
+    std::string getMode();
 
 private:
-    bool rememberFilledSquares[9];
     ChooserFactory *chooser;
+    ModeType currentMode;
 
 };
 
