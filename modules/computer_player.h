@@ -7,7 +7,6 @@
 #include "chooser_factory.h"
 #include "novice_chooser.h"
 #include "smart_chooser.h"
-#include "filled_squares.h"
 #include "mode_enum.h"
 
 class ComputerPlayer : public Player{

@@ -53,8 +53,8 @@ Board::Board(const wxString &title)
     changeModeButton = new wxButton(gamePanel, ChangeModeID, "Mode: Smart", wxPoint(500, 350), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);;
 
 
-    vSizer->Add(titleText, 0, wxEXPAND);
-    vSizer->Add(gamePanel, 1, wxEXPAND);
+    vSizer->Add(titleText, 0, wxEXPAND | wxALIGN_CENTER);
+    vSizer->Add(gamePanel, 1, wxEXPAND | wxALIGN_CENTER);
 
     this->SetSizerAndFit(vSizer);
 }
@@ -265,77 +265,56 @@ bool Board::checkWin(){
     if(button1->GetLabel() == 'X' && button2->GetLabel() == 'X' && button3->GetLabel() == 'X') {
         hasWinner = true;
         p->incrementScore();
-
     }
     else if(button1->GetLabel() == 'O' && button2->GetLabel() == 'O' && button3->GetLabel() == 'O'){
         hasWinner = true;
         cp->incrementScore();
-
     }
-
     else if(button4->GetLabel() == 'X' && button5->GetLabel() == 'X' && button6->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button4->GetLabel() == 'O' && button5->GetLabel() == 'O' && button6->GetLabel() == 'O'){
         hasWinner = true;
         cp->incrementScore();
-
     }
-
     else if(button7->GetLabel() == 'X' && button8->GetLabel() == 'X' && button9->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button7->GetLabel() == 'O' && button8->GetLabel() == 'O' && button9->GetLabel() == 'O'){
         hasWinner = true;
         cp->incrementScore();
-
     }
-
     else if(button1->GetLabel() == 'X' && button4->GetLabel() == 'X' && button7->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button1->GetLabel() == 'O' && button4->GetLabel() == 'O' && button7->GetLabel() == 'O'){
         hasWinner = true;
         cp->incrementScore();
-
     }
-
     else if(button2->GetLabel() == 'X' && button5->GetLabel() == 'X' && button8->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button2->GetLabel() == 'O' && button5->GetLabel() == 'O' && button8->GetLabel() == 'O'){
         hasWinner = true;
         cp->incrementScore();
-
     }
-
     else if(button3->GetLabel() == 'X' && button6->GetLabel() == 'X' && button9->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button3->GetLabel() == 'O' && button6->GetLabel() == 'O' && button9->GetLabel() == 'O'){
         hasWinner = true;
         cp->incrementScore();
-
     }
-
     else if(button1->GetLabel() == 'X' && button5->GetLabel() == 'X' && button9->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button1->GetLabel() == 'O' && button5->GetLabel() == 'O' && button9->GetLabel() == 'O') {
         hasWinner = true;
         cp->incrementScore();
     }
-
     else if(button3->GetLabel() == 'X' && button5->GetLabel() == 'X' && button7->GetLabel() == 'X'){
         hasWinner = true;
         p->incrementScore();
-
     }else if(button3->GetLabel() == 'O' && button5->GetLabel() == 'O' && button7->GetLabel() == 'O') {
         hasWinner = true;
         cp->incrementScore();
