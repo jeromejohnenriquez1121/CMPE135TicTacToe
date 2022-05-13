@@ -9,7 +9,7 @@ void NoviceChooser::setCPUMark(MarkType mark, Board *board) {
     }
 
     /**************************************************
-     *              Finding win condition             *
+     *         Blocking Human Player condition        *
      **************************************************/
 
     if(board->button1->GetLabel() == 'X' && board->button2->GetLabel() == 'X' && !rememberFilledSquares[2]){
