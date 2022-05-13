@@ -43,9 +43,9 @@ public:
     void changeMode(wxCommandEvent& event);
 
     // Member methods
-    void markSquare(MarkType mark, int index);
     bool isFilled(int index);
     bool checkWin();
+    void fillSquare(MarkType mark, wxButton *button, int index);
 
     // wxButtons used for the game
     wxButton *button1;

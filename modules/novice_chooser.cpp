@@ -13,52 +13,52 @@ void NoviceChooser::setCPUMark(MarkType mark, Board *board) {
      **************************************************/
 
     if(board->button1->GetLabel() == 'X' && board->button2->GetLabel() == 'X' && !rememberFilledSquares[2]){
-        board->markSquare(mark, 2);
+        board->fillSquare(mark, board->button3, 2);
     }
     else if(board->button1->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[8]){
-        board->markSquare(mark, 8);
+        board->fillSquare(mark, board->button9, 8);
     }
     else if(board->button1->GetLabel() == 'X' && board->button4->GetLabel() == 'X' && !rememberFilledSquares[6]){
-        board->markSquare(mark, 6);
+        board->fillSquare(mark, board->button7, 6);
     }
     else if(board->button2->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[7]){
-        board->markSquare(mark, 7);
+        board->fillSquare(mark, board->button8, 7);
     }
     else if(board->button3->GetLabel() == 'X' && board->button2->GetLabel() == 'X' && !rememberFilledSquares[0]){
-        board->markSquare(mark, 0);
+        board->fillSquare(mark, board->button1, 0);
     }
     else if(board->button3->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[6]){
-        board->markSquare(mark, 6);
+        board->fillSquare(mark, board->button7, 6);
     }
     else if(board->button3->GetLabel() == 'X' && board->button6->GetLabel() == 'X' && !rememberFilledSquares[8]){
-        board->markSquare(mark, 8);
+        board->fillSquare(mark, board->button9,8);
     }
     else if(board->button4->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[5]){
-        board->markSquare(mark, 5);
+        board->fillSquare(mark, board->button6, 5);
     }
     else if(board->button6->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[3]){
-        board->markSquare(mark, 3);
+        board->fillSquare(mark, board->button4, 3);
     }
     else if(board->button7->GetLabel() == 'X' && board->button4->GetLabel() == 'X'&& !rememberFilledSquares[0]){
-        board->markSquare(mark, 0);
+        board->fillSquare(mark, board->button1, 0);
     }
     else if(board->button7->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[2]){
-        board->markSquare(mark, 2);
+        board->fillSquare(mark, board->button3, 2);
     }
     else if(board->button7->GetLabel() == 'X' && board->button8->GetLabel() == 'X' && !rememberFilledSquares[8]){
-        board->markSquare(mark, 8);
+        board->fillSquare(mark, board->button9, 8);
     }
     else if(board->button8->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[1]){
-        board->markSquare(mark, 1);
+        board->fillSquare(mark, board->button2, 1);
     }
     else if(board->button9->GetLabel() == 'X' && board->button5->GetLabel() == 'X' && !rememberFilledSquares[0]){
-        board->markSquare(mark, 0);
+        board->fillSquare(mark, board->button1, 0);
     }
     else if(board->button9->GetLabel() == 'X' && board->button6->GetLabel() == 'X' && !rememberFilledSquares[2]){
-        board->markSquare(mark, 2);
+        board->fillSquare(mark, board->button3, 2);
     }
     else if(board->button9->GetLabel() == 'X' && board->button8->GetLabel() == 'X' && !rememberFilledSquares[6]){
-        board->markSquare(mark, 6);
+        board->fillSquare(mark, board->button7, 6);
     }
 
     // Chooses random empty scare if no win condition available or defense necessary
@@ -74,6 +74,34 @@ void NoviceChooser::setCPUMark(MarkType mark, Board *board) {
             }
             count++;
         }
-        board->markSquare(mark, index);
+
+        if(index == 0){
+            board->fillSquare(mark, board->button1, index);
+        }
+        else if(index == 1){
+            board->fillSquare(mark, board->button2, index);
+        }
+        else if(index == 2){
+            board->fillSquare(mark, board->button3, index);
+        }
+        else if(index == 3){
+            board->fillSquare(mark, board->button4, index);
+        }
+        else if(index == 4){
+            board->fillSquare(mark, board->button5, index);
+        }
+        else if(index == 5){
+            board->fillSquare(mark, board->button6, index);
+        }
+        else if(index == 6){
+            board->fillSquare(mark, board->button7, index);
+        }
+        else if(index == 7){
+            board->fillSquare(mark, board->button8, index);
+        }
+        else if(index == 8){
+            board->fillSquare(mark, board->button9, index);
+        }
+
     }
 }

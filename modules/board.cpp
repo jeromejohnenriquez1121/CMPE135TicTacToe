@@ -24,10 +24,8 @@ Board::Board(const wxString &title)
             wxID_ANY,
             " ",
             wxDefaultPosition,
-            wxSize(625, 50),
+            wxSize(625, 20),
             wxALIGN_CENTRE_HORIZONTAL);
-
-    titleText->SetBackgroundColour(wxColor(100, 100, 200));
 
     this->SetSizerAndFit(vSizer);
 
@@ -59,121 +57,23 @@ Board::Board(const wxString &title)
     this->SetSizerAndFit(vSizer);
 }
 
-
-void Board::markSquare(MarkType mark, int index){
-    if(index >= 0 && index < 9 && !isFilled(index) && !hasWinner){
-        if(index == 0){
-            if(mark == MarkType::X){
-                button1->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button1->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
+void Board::fillSquare(MarkType mark, wxButton *button, int index) {
+    if(index >= 0 && index < 9 && !filledSquares[index] && !hasWinner){
+        if(mark == MarkType::X){
+            button->SetLabel("X");
         }
-        else if(index == 1){
-            if(mark == MarkType::X){
-                button2->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button2->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-
+        else if(mark == MarkType::O){
+            button->SetLabel("O");
         }
-        else if(index == 2){
-            if(mark == MarkType::X){
-                button3->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button3->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
 
-
-        }
-        else if(index == 3){
-            if(mark == MarkType::X){
-                button4->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button4->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-
-        }
-        else if(index == 4){
-            if(mark == MarkType::X){
-                button5->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button5->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-
-        }
-        else if(index == 5){
-            if(mark == MarkType::X){
-                button6->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button6->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-
-
-        }
-        else if(index == 6){
-            if(mark == MarkType::X){
-                button7->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button7->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-
-
-        }
-        else if(index == 7){
-            if(mark == MarkType::X){
-                button8->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button8->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-
-
-        }
-        else if(index == 8){
-            if(mark == MarkType::X){
-                button9->SetLabel('X');
-            }
-            else if(mark == MarkType::O){
-                button9->SetLabel('O');
-            }
-            filledSquares[index] = true;
-            checkWin();
-
-        }
+        filledSquares[index] = true;
+        checkWin();
+    }
+    else if(index >= 0 && index < 9 && hasWinner){
+        std::cerr << "Cannot fill squares if game ended." << std::endl;
     }
     else{
-        std::cerr << "Index out of bounds or square filled" << std::endl;
+        std::cerr << "Index out of bounds." << std::endl;
     }
 }
 
@@ -182,55 +82,55 @@ bool Board::isFilled(int index){
 }
 
 void Board::markQuare1(wxCommandEvent &event) {
-    markSquare(MarkType::X, 0);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button1, 0);
+    cp->setMark(cp->getMark(), this);
 }
 
 void Board::markQuare2(wxCommandEvent &event) {
-    markSquare(MarkType::X, 1);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button2, 1);
+    cp->setMark(cp->getMark(), this);
 
 }
 
 void Board::markQuare3(wxCommandEvent &event) {
-    markSquare(MarkType::X, 2);
+    fillSquare(MarkType::X, button3, 2);
     cp->setMark(MarkType::O, this);
 
 }
 
 void Board::markQuare4(wxCommandEvent &event) {
-    markSquare(MarkType::X, 3);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button4, 3);
+    cp->setMark(cp->getMark(), this);
 
 }
 
 void Board::markQuare5(wxCommandEvent &event) {
-    markSquare(MarkType::X, 4);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button5, 4);
+    cp->setMark(cp->getMark(), this);
 
 }
 
 void Board::markQuare6(wxCommandEvent &event) {
-    markSquare(MarkType::X, 5);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button6, 5);
+    cp->setMark(cp->getMark(), this);
 
 }
 
 void Board::markQuare7(wxCommandEvent &event) {
-    markSquare(MarkType::X, 6);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button7, 6);
+    cp->setMark(cp->getMark(), this);
 
 }
 
 void Board::markQuare8(wxCommandEvent &event) {
-    markSquare(MarkType::X, 7);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button8, 7);
+    cp->setMark(cp->getMark(), this);
 
 }
 
 void Board::markQuare9(wxCommandEvent &event) {
-    markSquare(MarkType::X, 8);
-    cp->setMark(MarkType::O, this);
+    fillSquare(p->getMark(), button9, 8);
+    cp->setMark(cp->getMark(), this);
 
 }
 
