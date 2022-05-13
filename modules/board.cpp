@@ -53,8 +53,8 @@ Board::Board(const wxString &title)
     changeModeButton = new wxButton(gamePanel, ChangeModeID, "Mode: Smart", wxPoint(500, 350), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);;
 
 
-    vSizer->Add(titleText, 0, wxEXPAND | wxALIGN_CENTER);
-    vSizer->Add(gamePanel, 1, wxEXPAND | wxALIGN_CENTER);
+    vSizer->Add(titleText, 0, wxEXPAND);
+    vSizer->Add(gamePanel, 1, wxEXPAND);
 
     this->SetSizerAndFit(vSizer);
 }
