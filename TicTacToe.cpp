@@ -25,10 +25,11 @@ class MyApp : public wxApp
 public:
 
     virtual bool OnInit();
+    Board *TicTacToeBoard = new Board("TicTacToe");
 };
 
 
-Board *TicTacToeBoard = new Board("TicTacToe");
+
 
 
 
